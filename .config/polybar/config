@@ -1,9 +1,4 @@
 [bar/top]
-
-;------------;
-; DIMENSIONS ;
-;------------;
-
 width = 100%
 height = 20
 offset-y = 0
@@ -14,19 +9,9 @@ border-bottom-size = 0
 border-right-size = 16
 border-left-size = 16
 
-;----------;
-; LOCATION ;
-;----------;
-
 bottom = false
-monitor = HDMI-0
-monitor-fallback = eDP-1-1
 wm-restack = i3
 override-redirect = true 
-
-;-------;
-; FONTS ;
-;-------;
 
 font-0 = "FuraCode Nerd Font Mono:size=10;0"
 font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
@@ -34,32 +19,35 @@ font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
 font-3 = "Font Awesome 5 Brands:pixelsize=10;2"
 font-4 = "WenQuanYi Micro Hei Mono:size=10;0"
 
-;--------;
-; COLORS ;
-;--------;
-
 background = 0
 foreground = #fbf1c7
 border-color = 0
-
-;---------------;
-; MISCELLANEOUS ;
-;---------------;
 
 fixed-center = true
 padding-left = 2 
 padding-right = 2
 module-margin = 1.5
 
+[bar/top_primary]
+inherit = bar/top
+monitor = HDMI-0
+modules-right = wlan cpu memory temperature network
+modules-center = time
+
+[bar/top_secondary]
+inherit = bar/top
+monitor = eDP-1-1
+modules-left = battery volume backlight updates
+modules-center = date
+
+[bar/top_single]
+inherit = bar/top
+monitor = eDP-1-1
+modules-right = wlan cpu memory temperature network
 modules-left = battery volume backlight updates
 modules-center = date time 
-modules-right = wlan cpu memory temperature network
 
 [bar/bottom]
-;------------;
-; DIMENSIONS ;
-;------------;
-
 width = 100%
 height = 20
 offset-y = 0
@@ -70,19 +58,9 @@ border-bottom-size = 3
 border-right-size = 16
 border-left-size = 16
 
-;----------;
-; LOCATION ;
-;----------;
-
 bottom = true
-monitor = HDMI-0
-monitor-fallback = eDP-1-1
 wm-restack = i3
 override-redirect = true
-
-;-------;
-; FONTS ;
-;-------;
 
 font-0 = "Font Awesome 5 Free:style=Solid:pixelsize=10;0"
 font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=10;0"
@@ -90,147 +68,40 @@ font-2 = "Font Awesome 5 Brands:pixelsize=10;0"
 font-3 = "FuraCode Nerd Font Mono:size=10;0"
 font-4 = "WenQuanYi Micro Hei Mono:size=10;0"
 
-;--------;
-; COLORS ;
-;--------;
-
 background = 0
 foreground = #fbf1c7
 border-color = 0
-
-;---------------;
-; MISCELLANEOUS ;
-;---------------;
 
 fixed-center = true
 padding-left = 2 
 padding-right = 2
 module-margin = 1.5
 
-modules-left = mpd 
-modules-center = i3
-;modules-right = 
-
+[bar/bottom_primary]
+inherit = bar/bottom
+monitor = HDMI-0
 tray-position = right
 tray-detached = false 
 tray-padding = 2
 tray-offset-x = -16
-
-[bar/top_secondary]
-
-;------------;
-; DIMENSIONS ;
-;------------;
-
-width = 100%
-height = 20
-offset-y = 0
-offset-x = 0
-
-border-top-size = 7 
-border-bottom-size = 0
-border-right-size = 16
-border-left-size = 16
-
-;----------;
-; LOCATION ;
-;----------;
-
-bottom = false
-monitor = eDP-1-1
-wm-restack = i3
-override-redirect = true 
-
-;-------;
-; FONTS ;
-;-------;
-
-font-0 = "FuraCode Nerd Font Mono:size=10;0"
-font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
-font-3 = "Font Awesome 5 Brands:pixelsize=10;2"
-font-4 = "WenQuanYi Micro Hei Mono:size=10;0"
-
-;--------;
-; COLORS ;
-;--------;
-
-background = 0
-foreground = #fbf1c7
-border-color = 0
-
-;---------------;
-; MISCELLANEOUS ;
-;---------------;
-
-fixed-center = true
-padding-left = 2 
-padding-right = 2
-module-margin = 1.5
-
-modules-left = backlight
-;modules-center =
-;modules-right =
+modules-center = i3
 
 [bar/bottom_secondary]
-;------------;
-; DIMENSIONS ;
-;------------;
-
-width = 100%
-height = 20
-offset-y = 0
-offset-x = 0
-
-border-top-size = 0
-border-bottom-size = 3 
-border-right-size = 10
-border-left-size = 10
-
-;----------;
-; LOCATION ;
-;----------;
-
-bottom = true
-monitor = eDP-1-1 
-wm-restack = i3
-override-redirect = true
-
-;-------;
-; FONTS ;
-;-------;
-
-font-0 = "FuraCode Nerd Font Mono:size=10;0"
-font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
-font-3 = "Font Awesome 5 Brands:pixelsize=10;2"
-font-4 = "WenQuanYi Micro Hei Mono:size=10;0"
-
-;--------;
-; COLORS ;
-;--------;
-
-background = 0
-foreground = #fbf1c7
-border-color = 0
-
-;---------------;
-; MISCELLANEOUS ;
-;---------------;
-
-fixed-center = true
-padding-left = 2 
-padding-right = 2
-module-margin = 1.5
-
-;modules-left = i3 
+inherit = bar/bottom
+monitor = eDP-1-1
+modules-left = mpd
 modules-center = i3
-;modules-right = 
 
+[bar/bottom_single]
+inherit = bar/bottom
+monitor = eDP-1-1
+tray-position = right
+tray-detached = false 
+tray-padding = 2
+tray-offset-x = -16
+modules-left = mpd
+modules-center = i3 
 
-;---------;
-; MODULES ;
-;---------;
 
 [module/i3]
 type = internal/i3

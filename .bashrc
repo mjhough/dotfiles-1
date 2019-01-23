@@ -10,7 +10,7 @@ alias ls='ls --color=auto'
 alias please='sudo'
 alias bye='poweroff'
 alias fastai='conda activate fastai'
-alias nf='neofetch --kitty .config/neofetch/image/'
+alias nf='neofetch --kitty Documents/google-drive/walls'
 # Kittens
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
@@ -20,16 +20,9 @@ PS1='[\u@\h \W]\$ '
 
 source <(kitty + complete setup bash)
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
- 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-if which pyenv-virtualenv-init > /dev/null; then 
-  eval "$(pyenv virtualenv-init -)"; 
-fi
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/workspace
+source /usr/bin/virtualenvwrapper.sh
 
 function _update_ps1() {
     PS1=$(powerline-shell $?)
