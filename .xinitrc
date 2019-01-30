@@ -37,15 +37,15 @@ export LANG=en_US.UTF-8
 xrandr --setprovideroutputsource modesetting NVIDIA -0
 xrandr --auto
 
-if xrandr | grep "HDMI-0 disconnected"; then
-  ~/.screenlayout/single.sh
-   nvidia-settings --assign CurrentMetaMode="DPY-0: nvidia-auto-select @1920x1080 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-else
-  ~/.screenlayout/dual.sh
-   nvidia-settings --assign CurrentMetaMode="DPY-0: nvidia-auto-select @1920x1080 +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+
+if [[ $(hostname) == 'sean-pavilion' ]]; then
+  if xrandr | grep "HDMI-0 disconnected"; then
+      xrandr --output eDP-1-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1-1 --off --output HDMI-0 --off
+      nvidia-settings --assign CurrentMetaMode="DPY-0: nvidia-auto-select @1920x1080 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+  else
+      xrandr --output eDP-1-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1-1 --off --output HDMI-0 --mode 1920x1080 --pos 1920x0 --rotate normal
+      nvidia-settings --assign CurrentMetaMode="DPY-0: nvidia-auto-select @1920x1080 +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+  fi
 fi
 
-fcitx &
-numlockx &
-~/.fehbg &
-exec i3 
+exec bspwm 

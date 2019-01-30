@@ -10,7 +10,7 @@ border-right-size = 16
 border-left-size = 16
 
 bottom = false
-wm-restack = i3
+wm-restack = bspwm
 override-redirect = true 
 
 font-0 = "FuraCode Nerd Font Mono:size=10;0"
@@ -59,7 +59,7 @@ border-right-size = 16
 border-left-size = 16
 
 bottom = true
-wm-restack = i3
+wm-restack = bspwm
 override-redirect = true
 
 font-0 = "Font Awesome 5 Free:style=Solid:pixelsize=10;0"
@@ -84,13 +84,13 @@ tray-position = right
 tray-detached = false 
 tray-padding = 2
 tray-offset-x = -16
-modules-center = i3
+modules-center = bspwm
 
 [bar/bottom_secondary]
 inherit = bar/bottom
 monitor = eDP-1-1
 modules-left = mpd
-modules-center = i3
+modules-center = bspwm
 
 [bar/bottom_single]
 inherit = bar/bottom
@@ -100,19 +100,22 @@ tray-detached = false
 tray-padding = 2
 tray-offset-x = -16
 modules-left = mpd
-modules-center = i3 
+modules-center = bspwm 
 
 
-[module/i3]
-type = internal/i3
+[module/bspwm]
+type = internal/bspwm
 
-pin-workspaces = true
-strip-wsnumbers = true
-enable-scroll = false
+format = <label-state> <label-mode>
 
-label-unfocused-foreground = #bdae93
+pin-workspaces = true 
+enable-click = true
+enable-scroll = true 
+
+label-occupied-foreground = #a89984
 label-focused-foreground = #fbf1c7
 label-urgent-foreground = #cc241d
+label-empty-foreground = #665c54
 
 [module/time]
 type = internal/date

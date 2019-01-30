@@ -147,6 +147,9 @@ exec --no-startup-id xautolock -detectsleep -time 10 -locker $locker
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id redshift
 exec --no-startup-id mpDris2
+exec --no-startup-id fcitx
+exec --no-startup-id numlockx on
+exec --no-startup-id feh --bg-tile '/home/sean/Documents/google-drive/walls/forest.png'
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # change focus
