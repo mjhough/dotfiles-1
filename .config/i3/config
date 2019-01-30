@@ -56,11 +56,11 @@ bindsym $mod+d exec --no-startup-id rofi -show
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# Input Manager
-exec --no-startup-id export GTK_IM_MODULE=fcitx
-exec --no-startup-id export QT_IM_MODULE=fcitx
-exec --no-startup-id export XMODIFIERS=@im=fcitx
-exec --no-startup-id fcitx
+# input manager
+#exec --no-startup-id export gtk_im_module=fcitx
+#exec --no-startup-id export qt_im_module=fcitx
+#exec --no-startup-id export xmodifiers=@im=fcitx
+#exec --no-startup-id fcitx
 
 # sound
 #exec --no-startup-id volumeicon
@@ -271,6 +271,7 @@ for_window [class="Xfburn"] floating enable
 for_window [class="Fcitx-config-gtk3"] floating enable
 for_window [class="Blueberry.py"] floating enable
 for_window [class="Kalu"] floating enable
+for_window [class='scrcpy'] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
