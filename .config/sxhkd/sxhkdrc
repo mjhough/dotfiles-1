@@ -48,7 +48,7 @@ ctrl + alt + e
 	bspc quit
 
 # Lock
-ctrl + alt + x
+ctrl + alt + l 
   betterlockscreen -l dimblur
   
 # Poweroff
@@ -257,11 +257,11 @@ super + {_,shift + }a
 	bspc node @/ --flip {vertical,horizontal}
 
 # Expand tiled space
-alt + shift + {Left,Down,Up,Right}
+super + alt + {Left,Down,Up,Right}
 	bspc node {@west -r -25,@south -r +25,@north -r -25,@east -r +25}
 
 # Contract tiled space
-super + ctrl + {Left,Down,Up,Right}
+super + alt + shift + {Left,Down,Up,Right}
 	bspc node {@east -r -25,@north -r +25,@south -r -25,@west -r +25}
 
 # Increase/decrease window gap on focused desktop
@@ -269,7 +269,7 @@ super + shift + bracket{left,right}
 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 2 ))
 
 # Move floating window
-super + alt + {_,shift + }{Left,Down,Up,Right}
+super + ctrl + alt + {_,shift + }{Left,Down,Up,Right}
 	~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}
 
 
