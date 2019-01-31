@@ -47,6 +47,19 @@ modules-right = wlan cpu memory temperature network
 modules-left = battery volume backlight updates
 modules-center = date time 
 
+[bar/top_primary]
+inherit = bar/top
+monitor = DVI-I-1
+modules-right = cpu memory temperature network
+modules-center = time
+
+[bar/top_secondary]
+inherit = bar/top
+monitor = VGA-1
+modules-left = volume updates
+modules-center = date
+
+
 [bar/bottom]
 width = 100%
 height = 20
@@ -101,6 +114,21 @@ tray-padding = 2
 tray-offset-x = -16
 modules-left = mpd
 modules-center = bspwm 
+
+[bar/bottom_desktop_primary]
+inherit = bar/bottom
+monitor = DVI-I-1 
+tray-position = right
+tray-detached = false 
+tray-padding = 2
+tray-offset-x = -16
+modules-center = bspwm
+
+[bar/bottom_desktop_secondary]
+inherit = bar/bottom
+monitor = VGA-1 
+modules-left = mpd
+modules-center = bspwm
 
 
 [module/bspwm]
