@@ -1,5 +1,5 @@
 #########################
-# SUPER + FUNCTION KEYS #
+# APPLICATIONS          #
 #########################
 
 # Editor
@@ -26,169 +26,61 @@ super + F5
 super + F6
     mailspring
 
-#########################
-# SUPER + ... KEYS      #
-#########################
-
-#Atom
-super + e
-    atom
-
-#Toggle fullscreen of window
-super + f
-	  bspc node --state \~fullscreen
-
-#Htop
-super + h
-    kitty -e 'htop'
-
-#music player
-super + m
-    kitty -e 'ncmpcpp'
-
-# Toggle pseudo tiling of window
-super + p
-	bspc node --state \~pseudo_tiled
-
-#Terminal
-super + t
-    kitty 
-
-#Pulse audio
-super + v
-    kitty -e 'pulsemixer' 
-
-#Browser
-super + w
-    firefox 
-
-#Hide polybar
-super + y
-    polybar-msg cmd toggle
-
-#Xkill
-super + Escape
-    xkill
-
-#Terminal emulator
+# Terminal emulator
 super + Return
     kitty
 
-#Rofi
+# Rofi
 super + d
     rofi -show 
 
+
 #########################
-# SUPER + SHIFT KEYS    #
+# SETTINGS              #
 #########################
 
-#Reload bspwm
-super + shift + c
-	~/.config/bspwm/bspwmrc
-
-#reload sxhkd:
-super + shift + k 
+# Reload sxhkd:
+ctrl + alt + k 
 	pkill -USR1 -x sxhkd
 
-#kill
-super + shift + q
-	bspc node -c
-
-#Logout
-super + shift + e 
+# Logout
+ctrl + alt + e 
 	bspc quit
 
-#Lock
-super + shift + x
+# Lock
+ctrl + alt + x
   betterlockscreen -l dimblur
   
-#Poweroff
-super + shift + s 
+# Poweroff
+ctrl + alt + p 
   systemctl poweroff -i
 
-#Reboot
-super + shift + r
+# Reboot
+ctrl + alt + r
   systemctl reboot
 
-#########################
-# CONTROL + ALT KEYS    #
-#########################
-
-#Appfinder
-ctrl + alt + a
-     rofi -show
-
-#File-Manager
-ctrl + alt + b
-     pcmanfm
-
-#Email
-ctrl + alt + e
-     mailspring
-
-#Firefox
-ctrl + alt + f
-     firefox
-
-#Chromium
-ctrl + alt + g
-     chromium -no-default-browser-check
-
-#Nitrogen
-ctrl + alt + i
-     nitrogen
-
-#Screen-Locker
-ctrl + alt + k
-     betterlockscreen -l dimblur
-
-#Xfce4-settings-manager
-ctrl + alt + m
-     xfce4-settings-manager
-
-#Compton Toggle
+# Compton Toggle
 ctrl + alt + o
      ~/.config/bspwm/scripts/compton-toggle.sh
 
-#Terminal
-ctrl + alt + t
-     kitty
-
-#Pulse Audio Control
-ctrl + alt + u
-     kitty -e 'pulsemixer'
-
-#Atom
-ctrl + alt + w
-     atom
-
-#Kitty
-ctrl + alt + Return
-     kitty
-
-
-#########################
-# CONTROL + HOME KEYS  #
-#########################
-
-#Sound
-super + ctrl + s
+# Sound
+ctrl + alt + s
     kitty -e 'pulsemixer'
 
-#Wifi
-super + ctrl + i
+# Wifi
+ctrl + alt + i
     networkmanager_dmenu
 
-#Bluetooth
-super + ctrl + b
+# Bluetooth
+ctrl + alt + b
     blueberry
 
 
 #########################
-#     SCREENSHOTS       #
+#SCREENSHOTS            #
 #########################
 
-#Scrot
+# Scrot
 Print
   scrot -q 80 '%Y-%m-%d-%s_screenshot_$wx$h.png' -e 'mv $f ~/Pictures/'
 
@@ -198,117 +90,167 @@ ctrl + Print
 
 
 #########################
-#     MULTIMEDIA KEYS   #
+# MULTIMEDIA KEYS       #
 #########################
 
-#Raises volume
+# Raises volume
 XF86AudioRaiseVolume
   pactl set-sink-volume @DEFAULT_SINK@ +5%
 
-#Lowers volume
+# Lowers volume
 XF86AudioLowerVolume
   pactl set-sink-volume @DEFAULT_SINK@ -5%
 
-#Mute
+# Mute
 XF86AudioMute
   pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-#Playerctl works for Pragha, Spotify and others
-#DELETE the line for mpc if you want to use playerctl
-#putting a hashtag in front of the mpc line will NOT work
-#mpc works for ncmpcpp
-
-#PLAY
+# Play
 XF86AudioPlay
   playerctl play-pause
 
-#Next
+# Next
 XF86AudioNext
   playerctl next
 
-#previous
+# Previous
 XF86AudioPrev
   playerctl previous
 
-#Stop
+# Stop
 XF86AudioStop
   playerctl stop
 
-#Brightness up
+# Brightness up
 XF86MonBrightnessUp
   xbacklight -inc 5
 
-#Brightness down
+# Brightness down
 XF86MonBrightnessDown
   xbacklight -dec 5 
 
 
 #########################
-# BSPWM LAYOUT KEYS     #
+# BSPWM HOTKEYS         #
 #########################
 
-#azerty keyboard layout for numbers 1-10
-#{ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
+# Quit/Restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
 
-#################################################################
+# Close
+super + shift + q
+	bspc node -c
 
-#Focus selected desktop FOR QWERTY KEYBOARDS
+# Kill
+super + Escape
+  bspc node -k
+
+# Alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# Send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# Swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+
+#########################
+# STATE/FLAGS           #
+#########################
+
+# Set the window state
+super + {t,shift + t,s,f}
+  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# Set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+
+#########################
+# FOCUS/SWAP            #
+#########################
+
+# Focus selected desktop
 super + {1-9,0}
 	bspc desktop -f '^{1-9,10}'
 
-#Focus selected desktop	FOR AZERTY KEYBOARDS
-#super + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
-#    bspc desktop -f '^{1-9,10}'
-
-#################################################################
-
-#Move window to selected desktop FOR QWERTY KEYBOARDS
-super + shift + {1-9,0}
-    id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
-
-#Move window to selected desktop FOR AZERTY KEYBOARDS
-#super + shift + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
-#    id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
-
-#################################################################
-
-
-#Focus selected desktop
+# Focus selected desktop
 alt + Tab
 	bspc desktop -f '^{1-9,10}'
 
-#Focus selected desktop
-super + Tab
-	bspc desktop -f '^{1-9,10}'
-
-
-# Focus next/previous window
-ctrl + alt + Left
-	bspc node --focus west
-
-# Focus next/previous window
-ctrl + alt + Right
-	bspc node --focus east
-
-# Focus Up window
-ctrl +alt + Up
-	bspc node --focus north
-
-# Focus Down window
-ctrl + alt + Down
-	bspc node --focus south
-
-#Rotate desktop
-alt + space
-	bspc node @/ --rotate {90,-90}
+# Move window to selected desktop
+super + shift + {1-9,0}
+    id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
 
 # Focus/swap windows by direction
 super + {_,shift + }{Left,Down,Up,Right}
-	bspc node --{focus,swap} {west,south,north,east}
+	bspc node -{f,s} {west,south,north,east}
 
 # Focus/swap windows by direction
-ctrl + super + {h,j,k,l}
-	bspc node --{focus} {west,south,north,east}
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# Focus the node for the given path jump
+super + {p,b,comma,period}
+  bspc node -f @{parent,brother,first,second}
+
+
+# Focus the next/previous node in the current desktop
+super + {_,shift + }c
+  bspc node -f {next,prev}.local
+
+# Focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+  bspc desktop -f {prev,next}.local
+
+# Focus the last node/desktop
+super + {grave,Tab}
+  bspc {node,desktop} -f last
+
+# Focus the older or newer node in the focus history
+super + {o,i}
+  bspc wm -h off; \
+  bspc node {older,newer} -f; \ 
+  bspc wm -h on
+
+#########################
+# PRESELECT             #
+#########################
+
+#Preselect the direction
+super + ctrl + {Left,Down,Up,Right}
+  bspc node -p {west,south,north,east}
+
+#Preselect the direction
+super + ctrl + {h,j,k,l}
+  bspc node -p {west,south,north,east}
+
+# Define splitting ratio for next window on leaf/parent
+super + ctrl + {_,shift +}{1-9}
+	bspc node {_,@/} --presel-ratio 0.{1-9}
+
+# Cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# Cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+
+#########################
+# MOVE/RESIZE           #
+#########################
+
+# Rotate desktop
+alt + space
+	bspc node @/ --rotate {90,-90}
 
 # Flip layout vertically/horizontally
 super + {_,shift + }a
@@ -316,37 +258,18 @@ super + {_,shift + }a
 
 # Expand tiled space
 alt + shift + {Left,Down,Up,Right}
-	bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
+	bspc node {@west -r -25,@south -r +25,@north -r -25,@east -r +25}
 
 # Contract tiled space
 super + ctrl + {Left,Down,Up,Right}
-	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+	bspc node {@east -r -25,@north -r +25,@south -r -25,@west -r +25}
 
 # Increase/decrease window gap on focused desktop
-super + bracket{left,right}
-	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+super + shift + bracket{left,right}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 2 ))
 
 # Move floating window
 super + alt + {_,shift + }{Left,Down,Up,Right}
 	~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}
 
-# set the window state
-super + space
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-
-# Focus parent/brother/first/second for preselection
-super + ctrl + {e,r,t,y}
-	bspc node --focus @{parent,brother,first,second}
-
-# Preselect the splitting area for next window on leaf/parent
-super + ctrl + {u,i,o,p}
-	bspc node --presel-dir \~{west,south,north,east}
-
-# Define splitting ratio for next window on leaf/parent
-super + ctrl + {_,shift +}{1-9}
-	bspc node {_,@/} --presel-ratio 0.{1-9}
-
-# Cancel preselection
-super + ctrl + space
-	bspc node --presel-dir cancel
 
