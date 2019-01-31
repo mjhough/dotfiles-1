@@ -47,13 +47,13 @@ modules-right = wlan cpu memory temperature network
 modules-left = battery volume backlight updates
 modules-center = date time 
 
-[bar/top_primary]
+[bar/top_desktop_primary]
 inherit = bar/top
 monitor = DVI-I-1
 modules-right = cpu memory temperature network
 modules-center = time
 
-[bar/top_secondary]
+[bar/top_desktop_secondary]
 inherit = bar/top
 monitor = VGA-1
 modules-left = volume updates
